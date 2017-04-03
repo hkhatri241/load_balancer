@@ -1,0 +1,6 @@
+[SectionOne]
+vip_interface: eth0
+vip_port: 
+vip_ip: 172.31.1.6
+target_ip: 21.3.4.87,24.244.34.6
+load_balancer_algorithm: 2

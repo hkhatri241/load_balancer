@@ -1,0 +1,55 @@
+dhcp
+
+R1#configure terminal
+R1(config)#interface fa 0/0
+R1(config-if)#ip address 192.168.0.1 255.255.255.0
+R1(config-if)#no shutdown
+R1(config-if)#exit
+R1(config)#ip dhcp pool pool_r1
+R1(dhcp-config)#network 192.168.0.0 255.255.255.0
+R1(dhcp-config)#default-router 192.168.0.1
+R1(dhcp-config)#dns-server 192.168.0.1
+R1(dhcp-config)#lease 3 12 59
+R1(dhcp-config)#domain-name test.com
+R1(dhcp-config)#exit
+R1(config)#ip dhcp excluded-address 192.168.0.1 192.168.0.100
+R1(config)#exit
+R1#write
+R1#copy running-config startup-config
+7. For each computer, the console is started to set the command: ip dhcp. It starts the procedure for
+obtaining the TCP/IP configuration settings from the implemented DHCP server. As an example, the
+console output for PC1 is shown on
+9. The physical connectivity among computers can be tested via the ping command.
+
+
+topology
+
+
+R2>enable
+R2#configure terminal
+R2(config)#interface s 0/0
+R2(config­if)#no shutdown
+R2(config­if)#ip address 192.168.100.2 255.255.255.252
+R2(config­if)#exit
+R2(config)#interface fa 0/1
+R2(config­if)#no shutdown
+R2(config­if)#ip address 192.168.102.1 255.255.255.0
+R2(config­if)#exit
+R2(config)#exit
+R2#copy running­config startup­config
+R1(config)#ip route 192.168.102.0 255.255.255.0 s0/0
+R1#show ip route
+
+
+inside local and inside global
+r2(config) ip nat inside source static  local inside ip  global innside ip
+interface f0/0
+ip address 190.168.1.20
+i nat inside
+exit
+interface f1/0
+ip address 190.168.2.20
+ip nat inside
+show ip nat translations
+show ip nat statistics
+clear

@@ -1,0 +1,33 @@
+create a config class that reads config properties
+create a validator class(static class with no object) with a method that takes in a config object and returns true if all good else prints appropriate eror and logs them.
+on startup do all checks,validate entries and ping server to check theyare alive.(probably a static class)
+scratch the second point. Create a validate class which has no knowledge of params object. It simply validates individual input. Call this validate class from inside the params class. Maybe the params class could have static or class methods
+
+For startup check of the server(to see if it is wrking properly), 
+Idea 1 --- we need a protocol level ping i.e. if it is a web server, do a sample http request i.e. to check whether the service running on the server works, query the serer for that service. Therefore, create an abstract class/interface(or maybe something like that) which can be implemented by the deployer of the load balancer depending upon the service. Leads to flexibility.
+
+Idea 2 --- Probably application specific. Refer http://serverfault.com/questions/312930/is-ping-a-reliable-way-to-check-if-a-server-is-available. 
+
+No code in validate class to check if port is free or not. do in main loop.
+No code in validate and params to check whether vip ip address is indeed bound to vip interface. could do,uses netifaces or manually,but not now.
+
+schema of config files-
+vip port
+vip interface
+vip ip address
+target ip addresses
+load balancer algorithm type
+
+
+
+Graceful shutdown of load balancer.
+Graceful handling if server's fail. 
+
+
+
+
+sidenote ---
+use arpscan on wlan0 to find all devices in a subnet
+idea is to send requests to devices on the same subnet.
+maybe ip packets are banned / blocked.
+will have to try to know.
